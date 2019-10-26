@@ -1,0 +1,651 @@
+<!--by David-->
+<!--重庆大学失物招领协会-->
+<!--设计文档：
+
+网页width：1980=500:625
+
+/* 超小设备（手机，小于 768px） */
+/* Bootstrap 中默认情况下没有媒体查询 */
+
+/* 小型设备（平板电脑，768px 起） */
+@media (min-width: @screen-sm-min) { ... }
+
+/* 中型设备（台式电脑，992px 起） */
+@media (min-width: @screen-md-min) { ... }
+
+/* 大型设备（大台式电脑，1200px 起） */
+@media (min-width: @screen-lg-min) { ... }-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <title>Main</title>
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/bootstrap-4-dist/css/bootstrap.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="/static/css/carousel.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.carousel.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/main.js"></script>
+</head>
+<body style="background-color: #e1e3ff">
+    <div id="div_head" class="navbar navbar-light navbar-expand-sm bg-light container-fluid form-inline">
+        <div class="navbar-brand ">
+            <a href="#" style="border-style: groove;border-radius: 5px;box-shadow: 3px 3px 20px #000000;border-width: 1px;border-color: white">CQUswzl</a>
+        </div>
+        <div id="contant" class="collapse navbar-collapse">
+            <ul   class="navbar navbar-nav" style="font-size: 15px">
+                <li class="nav-item"><a href="/" class="nav-link">主页</a></li>
+                <li class="nav-item" id="search_button_for_url"><a href="#" class="nav-link" onclick="putdown_search_button()">搜索</a></li>
+                <li class="nav-item"><a href="/release" class="nav-link">发布</a></li>
+                <li class="nav-item"><a href="/login/{{page}}" class="nav-link">登录/用户</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">关于我们/加入我们</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">怎样使用？</a>
+                </li>
+            </ul>
+            <span id="span"></span>
+            <div id="search" class="row">
+                <form class="   col-10" action="/test_search" method="post">
+                    <div class="container_search" id="div_search1">
+                        <input type="text" placeholder="Search..." name="search_str1" formmethod="post">
+                        <div class="search"></div>
+                    </div>
+
+                    <div id="div_search2" class="row form-control">
+                        <input name="search_str2"  type="text" class="form-control  form-inline col-8" placeholder="Search">
+                        <button class="btn btn-info" type="submit">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#contant">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <script>
+        if (document.body.offsetWidth>1400){
+            document.getElementById('div_head').style.setProperty(
+                'height',document.getElementById('div_head').offsetHeight+'px'
+            );
+            document.getElementById("div_search2").style.setProperty(
+                'display','none'
+            )
+        }
+        else{
+            document.getElementById('div_search1').style.setProperty(
+                'display','none'
+            )
+        }
+        function putdown_search_button() {
+            if (document.body.offsetWidth<768){
+                window.location.href='/search_for_phone'
+            }
+            else{
+                window.location.href='/search_for_pc'
+            }}
+    </script>
+
+    <!--模态框-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="myModalLabel" style="font-size: 20px">请你像我这样做</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    测试版：1.0 于2019/1/1
+                    <br>
+                    使用方法：自己摸索
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><span>我知道了</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="clear_float"></div>
+    <div id="div-jianxi1 "  style="height: 100px"></div>
+
+
+    <div id="div_roll_things" class=" container-fluid">
+        <!--分为两个部分  分别是在手机与平板上适配的#roll_for_phone 与在电脑端适配的#caroursel  width=1050px分界-->
+
+        <div id="roll_for_phone" class="box_shadow" style="background-color: #007bff">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <!-- 指示符 -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+
+                <!-- 轮播图片 -->
+                <div class="carousel-inner" style="height: 200px">
+
+                    <!--注意此处的高度设定只是临时设计 要按照屏幕宽度比例 使用jq来-->
+
+                    <div class="carousel-item active">
+                        <img class="change_pic" src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                        <div style="position: absolute ;left: 70px">
+                            <!--此处要确定这个包裹div的宽度 用于文字提行 使用jq获取-->
+                            <p style="font-size: 18px;color: white;text-align: center">这是标题</p>
+                            <p style="font-size: 10px;color: white;text-align: center">这是内容,这是内容，这真的这是内容 这是一个很多的内容</p>
+                            <!--注意此处使用jq获取到img元素宽度后再进行定位与元素的外围的宽度确定-->
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="change_pic" src="https://static.runoob.com/images/mix/img_nature_wide.jpg">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="change_pic" src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
+                    </div>
+                </div>
+
+                <!-- 左右切换按钮 -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+
+        </div>
+
+
+
+        <div id="caroursel"  class = "caroursel poster-main box_shadow" style="margin: auto auto" data-setting = '{
+	"width":1000,
+	"height":270,
+	"posterWidth":640,
+	"posterHeight":270,
+	"scale":0.8,
+	"dealy":"2000",
+	"algin":"middle"
+}'>
+
+            <ul class = "poster-list" id="recommend_ul">
+                <li onclick=window.location.href="{{dict['recommend']['1'][2]}}"; style="cursor: pointer" class = "poster-item"><img src={{dict['recommend']['1'][0]}} width = "100%" height="100%"><p class="roll_p">{{dict['recommend']['1'][1]}}</p></li>
+                <li onclick=window.location.href="{{dict['recommend']['2'][2]}}"; style="cursor: pointer" class = "poster-item"><img src={{dict['recommend']['2'][0]}} width = "100%" height="100%"><p class="roll_p">{{dict['recommend']['2'][1]}}</p></li>
+                <li onclick=window.location.href="{{dict['recommend']['3'][2]}}"; style="cursor: pointer" class = "poster-item"><img src={{dict['recommend']['3'][0]}} width = "100%" height="100%"><p class="roll_p">{{dict['recommend']['3'][1]}}</p></li>
+                <li onclick=window.location.href="{{dict['recommend']['4'][2]}}"; style="cursor: pointer" class = "poster-item"><img src={{dict['recommend']['4'][0]}} width = "100%" height="100%"><p class="roll_p">{{dict['recommend']['4'][1]}}</p></li>
+                <li onclick=window.location.href="{{dict['recommend']['5'][2]}}"; style="cursor: pointer" class = "poster-item"><img src={{dict['recommend']['5'][0]}} width = "100%" height="100%"><p class="roll_p">{{dict['recommend']['5'][1]}}</p></li>
+                <li onclick=window.location.href="{{dict['recommend']['6'][2]}}"; style="cursor: pointer" class = "poster-item"><img src={{dict['recommend']['6'][0]}}  width = "100%" height="100%"><p class="roll_p">{{dict['recommend']['6'][1]}}</p></li>
+                <li onclick=window.location.href="{{dict['recommend']['7'][2]}}"; style="cursor: pointer" class = "poster-item"><img src={{dict['recommend']['7'][0]}}  width = "100%" height="100%"><p class="roll_p">{{dict['recommend']['7'][1]}}</p></li>
+            </ul>
+            <div style="cursor: pointer" class = "poster-btn poster-prev-btn"></div>
+            <div style="cursor: pointer" class = "poster-btn poster-next-btn"></div>
+        </div>
+        <script>
+            Caroursel.init($('.caroursel'))
+        </script>
+    </div>
+
+    <!--手机端的搜索框-->
+
+    <div class="container-fluid" id="search_for_phone" style="text-align: center;margin-top: 20px;margin-bottom: 20px">
+        <span><input  type="text" placeholder="Search" style="border-radius: 5px"></span>
+        <span><button  class="btn btn-info">搜索</button></span>
+    </div>
+
+
+
+    <div style="text-align: center">
+        <div id="div_jianxi2" style="margin:0 auto;height: 40px;background-color: #007bff;width: 640px"></div>
+    </div>
+
+    <div id="main_information"  class="cheak_yellow" style="background-image: url('')"><!--此处添加背景-->
+        <div id="information_for_phone" class="cheak_black" style="margin: 0px auto">
+            <span></span><!--间隔线-->
+            <div></div>
+        </div>
+
+        <div id="information_for_pc" style="width: 100%;text-align: center" class="cheak_yellow">
+            <span><div style="height: 20px;width: 100%"></div></span><!--间隔线-->
+            <div id="daohangbejing" style="background-image: url('/static/img/导航背景.jpg');background-size: auto 100%;width: 100%;height:200px"><!--背景-->
+                <div id="daohangbeijing_inner" style=" display: inline-block;margin: auto auto" ><!--导航外围 及导航宽度设置-->
+                    <div id="daohang_for_pc"  style="position: relative;top: 20px;"> <!--副导航-->
+                        <a href="/release"><img id="fabushiwu" src="/static/img/发布失物.png"><p>发布失物</p></a>
+                        <a href="/release"><img id="fabuzhaoling" src="/static/img/发布招领.png"><p>发布招领</p></a>
+                        <a href="#" onclick="putdown_search_button()"><img id="sousuo" src="/static/img/搜索.png"><p>搜索</p></a>
+                        <a href="/user"><img src="/static/img/成功.png"><p>用户中心</p></a>
+                        <script>
+                            $(document).ready(function () {
+                                $("#sousuo").css('width',document.getElementById("fabuzhaoling").offsetWidth);
+                                $("#fabushiwu").css('width',document.getElementById("fabuzhaoling").offsetWidth)
+                            })
+                        </script>
+
+                        <p class="clear_float"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div><!--内容头-->
+                <div style="height: 30px"></div><!--导航与内容间隔-->
+                <div>
+
+                    <div id="lable_new" style="display: inline-block">
+                        <span style="font-size: 40px">最新发布</span><span style="font-size: 20px" class="badge badge-info">New</span>
+                    </div>
+
+                    <a href="#" id="getmore" style="display: inline-block">
+                        <p style="display: inline-block;font-size:20px">查看更多</p><span class="glyphicon glyphicon-log-in"></span>
+                    </a>
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    var width_new=document.getElementById("lable_new").offsetWidth;
+                    var width_getmore=document.getElementById("getmore").offsetWidth;
+                    var width_li=document.getElementById("li_1").offsetWidth;
+                    var width_move=(width_li-width_new-width_getmore)/2;
+                    $("#lable_new").css({
+                        "position":"relative",
+                        "right":width_move
+                    });
+                    $("#getmore").css({
+                        "position":"relative",
+                        "left":width_move
+                    });
+                })
+            </script>
+
+            <div id="information_for_pc_main" style="margin: 0 auto;width: 60%;background-color: #eeffe5"><!--主要内容区域-->
+                <ul id="information_for_pc_main_ul" style="text-align: left">
+                    <li id="li_1" onclick=window.location.href="{{dict['list']['1'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['1'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['1'][3]}}<span class="badge badge-{{dict['list']['1'][10]}}">{{dict['list']['1'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['1'][4]}}</span></h2>
+                            <h3><span>发布者：<span class="fabuze">{{dict['list']['1'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['1'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期 :{{dict['list']['1'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['1'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['1'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_2" onclick=window.location.href="{{dict['list']['2'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['2'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['2'][3]}}<span class="badge badge-{{dict['list']['2'][10]}}">{{dict['list']['2'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['2'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['2'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['2'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['2'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['2'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['2'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_3" onclick=window.location.href="{{dict['list']['3'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['3'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['3'][3]}}<span class="badge badge-{{dict['list']['3'][10]}}">{{dict['list']['3'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['3'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['3'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['3'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['3'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['3'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['3'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_4" onclick=window.location.href="{{dict['list']['4'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['4'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['4'][3]}}<span class="badge badge-{{dict['list']['4'][10]}}">{{dict['list']['4'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['4'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['4'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['4'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['4'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['4'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['4'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_5" onclick=window.location.href="{{dict['list']['5'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['5'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['5'][3]}}<span class="badge badge-{{dict['list']['5'][10]}}">{{dict['list']['5'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['5'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['5'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['5'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['5'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['5'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['5'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_6" onclick=window.location.href="{{dict['list']['6'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['6'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['6'][3]}}<span class="badge badge-{{dict['list']['6'][10]}}">{{dict['list']['6'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['6'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['6'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['6'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['6'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['6'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['6'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_7" onclick=window.location.href="{{dict['list']['7'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['7'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['7'][3]}}<span class="badge badge-{{dict['list']['7'][10]}}">{{dict['list']['7'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['7'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['7'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['7'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['7'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['7'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['7'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_8" onclick=window.location.href="{{dict['list']['8'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['8'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['8'][3]}}<span class="badge badge-{{dict['list']['8'][10]}}">{{dict['list']['8'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['8'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['8'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['8'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['8'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['8'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['8'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_9" onclick=window.location.href="{{dict['list']['9'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['9'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['9'][3]}}<span class="badge badge-{{dict['list']['9'][10]}}">{{dict['list']['9'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['9'][4]}}</span></h2>
+                            <h3>                            <span>发布者：<span class="fabuze">{{dict['list']['9'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['9'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['9'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['9'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['9'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                    <li id="li_10" onclick=window.location.href="{{dict['list']['10'][1]}}"; class="information_for_pc_main_ul_li">
+                        <div class="div_main_img">
+                            <img class="img_main_img" src="{{dict['list']['10'][0]}}">
+                        </div>
+                        <div class="div_main_div cheak_black">
+                            <h1>{{dict['list']['10'][3]}}<span class="badge badge-{{dict['list']['10'][10]}}">{{dict['list']['10'][2]}}</span></h1>
+                            <h2 class="miaoshu">描述：<span>{{dict['list']['10'][4]}}</span></h2>
+                            <h3><span>发布者：<span class="fabuze">{{dict['list']['10'][5]}}</span></span><span style="display: inline-block;width: 10px"></span><span class="didian">丢失/拾取地点：<span>{{dict['list']['10'][9]}}</span></span></h3>
+                            <h4 class="cheak_black">
+                                <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['list']['10'][6]}}</p>
+                                <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['list']['10'][8]}}</p>
+                                <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['list']['10'][7]}}</p>
+                            </h4>
+                        </div>
+                    </li>
+                </ul> <!--注意尾页中无填满时 删除多余的li元素-->
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                var li_width=document.getElementById("li_1").offsetWidth-160;
+                var li_height=document.getElementById("li_1").offsetHeight;
+                var h4_jq=$("#information_for_pc_main h4");
+                $(".div_main_div").css("width",li_width);
+                /*添加居于右下角的提示*/
+                /*添加图片上下居中*/
+                var li_js=document.getElementsByClassName("information_for_pc_main_ul_li");
+                /*l*//*i_jq.on('click',function () {
+                    window.location.href=li_jq.html.href
+                });*/
+               for (var i in li_js){
+                   li_js[i].onmouseover=function () {
+                       this.setAttribute('style','background-color:#f893ff ')
+                   };
+                   li_js[i].onmouseout=function () {
+                       this.setAttribute('style','background-color:#46fffc')
+                   };
+                   var s=li_js[i].children[1];
+                   s.children[2].style.setProperty('top',s.offsetHeight-s.children[2].offsetHeight-5+'px');
+                   s.children[3].style.setProperty('top',s.offsetHeight-s.children[3].offsetHeight-20+'px');
+                   s.children[3].style.setProperty('left',s.offsetWidth-s.children[3].offsetWidth+'px')
+               }
+
+
+
+            });
+        </script>
+
+        <div style="height: 15px"></div><!--内容与跳转间隙-->
+
+        <div style="text-align: center"> <!--外层设置居中辅助div-->
+            <div id="information_foot"  style="margin: 0 auto;display: inline-block;padding-top: 3px;padding-right: 5px;border-radius: 5px;border-color: #6fb1ff;border-width: 1px;border-style: groove"> <!--导航跳转尾-->
+                <ul>
+                    <li><p style="font-size: 25px">第{{page}}/{{max_page}}页</p></li> <!--标签  共 多少页  多少条信息-->
+                    <li><button onclick=window.location.href="/"; id="bt1" class="btn btn-light border-info">1</button></li> <!--第一页-->
+                    <li><button onclick=window.location.href="/2"; id="bt2" class="btn btn-light border-info">2</button></li> <!--向前一页  在0页禁用-->
+                    <li><button onclick=window.location.href="/3"; id="bt3" class="btn btn-light border-info">3</button></li> <!--中间页 在有页数信息时菜添加内部子节点-->
+                    <li><button onclick=window.location.href="/4"; id="bt4" class="btn btn-light border-info">4</button></li> <!--向后一页  在之后一页禁用-->
+                    <li><button onclick=window.location.href="/5"; id="bt5" class="btn btn-light border-info">5</button></li> <!--最后一页-->
+                    <li>
+                        <button id="button_1" type="button" class="btn btn-primary">选择<span class="glyphicon glyphicon-chevron-down"></span></button>
+                            <ul id="tiaozhuan_ul" class="list-group">
+                                <li onclick=window.location.href="/6"; class="list-group-item">06</li>
+                                <li onclick=window.location.href="/7"; class="list-group-item">07</li>
+                                <li onclick=window.location.href="/8"; class="list-group-item">08</li>
+                                <li onclick=window.location.href="/9"; class="list-group-item">09</li>
+                                <li onclick=window.location.href="/10"; class="list-group-item">10</li>
+                                <li onclick=window.location.href="/11"; class="list-group-item">11</li>
+                                <li onclick=window.location.href="/12"; class="list-group-item">12</li>
+                                <li onclick=window.location.href="/13"; class="list-group-item">13</li>
+                                <li onclick=window.location.href="/14"; class="list-group-item">14</li>
+                                <li onclick=window.location.href="/15"; class="list-group-item">15</li>
+                            </ul>
+
+                    </li>
+                    <script>
+
+                            $("#button_1").on('click',function (event) {
+                                var tiaozhuan_jq=$("#tiaozhuan_ul");
+                                if (tiaozhuan_jq.css('display')=="none"){
+                                    tiaozhuan_jq.css("display","block")
+                                }
+                                else {
+                                    tiaozhuan_jq.css("display","none")
+                                }
+                              /*  event.stopPropagation()*/
+                            });
+                           /* $("body").on('click',function () {
+                                var tiaozhuan_jq=$("#tiaozhuan_ul");
+                                if (tiaozhuan_jq.css("display")!="none"){
+                                    tiaozhuan_jq.css("display","none")
+                                }
+
+                            })*/
+                            try {
+                                document.getElementById('bt{{page}}').classList.add('active');
+                            }
+                            catch (err){
+
+                            }
+                            tiaozhuan_js=document.getElementById('tiaozhuan_ul').children;
+                            for (var num=0;num<tiaozhuan_js.length;num+=1){
+                                tiaozhuan_js[num].setAttribute('style','cursor:pointer');
+                            }
+                    </script>
+                    <li>
+                        <input id="page_input" style="border-radius: 3px;border-color: #3b62ff;width: 60px;height: 38px;border-width: 1px;font-size: 16px">
+                        <button class="btn btn-info" onclick="page()" style="position: relative;bottom: 3px">跳转到</button>
+                    </li> <!--跳转到指定页，大于总页数 自动跳转到最后一页-->
+
+                    <div class="clear_float"></div>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="height: 50px"></div> <!--这是一个间隙-->
+    <div class="container-fluid" style="background-color: #222222;height: 150px"><!--页脚   最好改为响应式高度-->
+    </div>
+<!--qq及其他分享工具-->
+</body>
+</html>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .container_search {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            height: 100px;
+        }
+        .container_search .search {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            background: crimson;
+            border-radius: 50%;
+            transition: all 1s;
+            z-index: 4;
+            box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+        }
+        .container_search .search:hover {
+            cursor: pointer;
+        }
+        .container_search .search::before {
+            content: "";
+            position: absolute;
+            margin: auto;
+            top: 22px;
+            right: 0;
+            bottom: 0;
+            left: 22px;
+            width: 12px;
+            height: 2px;
+            background: white;
+            transform: rotate(45deg);
+            transition: all .5s;
+        }
+        .container_search .search::after {
+            content: "";
+            position: absolute;
+            margin: auto;
+            top: -5px;
+            right: 0;
+            bottom: 0;
+            left: -5px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 2px solid white;
+            transition: all .5s;
+        }
+        .container_search input {
+            font-family: 'Inconsolata', monospace;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            outline: none;
+            border: none;
+            background: crimson;
+            color: white;
+            text-shadow: 0 0 10px crimson;
+            padding: 0 80px 0 20px;
+            border-radius: 30px;
+            box-shadow: 0 0 25px 0 crimson, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+            transition: all 1s;
+            opacity: 0;
+            z-index: 5;
+            font-weight: bolder;
+            letter-spacing: 0.1em;
+        }
+        .container_search input:hover {
+            cursor: pointer;
+        }
+        .container_search input:focus {
+            width: 300px;
+            opacity: 1;
+            cursor: text;
+        }
+        .container_search input:focus ~ .search {
+            right: -250px;
+            background: #151515;
+            z-index: 6;
+        }
+        .container_search input:focus ~ .search::before {
+            top: 0;
+            left: 0;
+            width: 25px;
+        }
+        .container_search input:focus ~ .search::after {
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 2px;
+            border: none;
+            background: white;
+            border-radius: 0%;
+            transform: rotate(-45deg);
+        }
+        .container_search input::placeholder {
+            color: white;
+            opacity: 0.5;
+            font-weight: bolder;
+        }
+    </style>
+
+
+

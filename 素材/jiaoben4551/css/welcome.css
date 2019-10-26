@@ -1,0 +1,306 @@
+body{
+    background-image: url("../素材/bg16gai.jpg");
+    margin: 0px;
+    /*border-color: black;
+    border-style: dashed;
+    border-width: 2px;*/
+    width: 1522px; /*注意使用js做浏览器匹配*/
+}
+#div_head{
+    height:62px;
+    width: 25%;
+    background-color: #2e7db2;
+    box-shadow: 3px 3px 20px #000000;
+    font-family: 方正兰亭超细黑简体;
+    font-size: 30px;
+    color: white;
+    position: relative;
+    top:50px;
+    line-height: 30px;
+
+
+
+    }
+#head_img_div{
+    margin-left: 40px;
+    display: inline-block;
+    position: relative;
+    bottom:5px;
+    float: left;
+}
+#head_p{
+    position: relative;
+}
+#div_pic{
+    margin-top: 80px;
+    float: left;
+    width: 624px;
+    /*border-color: white;
+    border-style: dashed;
+    border-width: 2px;*/
+    display: inline-block;
+}
+#div_pic #div_pic_inner img{
+    position: relative;
+    top:2px;
+}
+#pic_1{
+    box-shadow: 3px 3px 20px #000000;
+    margin-right:6px;
+    vertical-align: top;
+    float: left;
+    overflow: hidden;
+
+    border-width: 2px;
+    border-color: white;
+    border-radius: 5px;
+    border-style: groove;
+
+    padding: 3px;
+}
+#pic_2{
+    box-shadow: 3px 3px 20px #000000;
+    display: inline-block;
+    position: absolute;
+
+    border-width: 2px;
+    border-color: white;
+    border-radius: 5px;
+    border-style: groove;
+
+}
+#pic_3{
+    box-shadow: 3px 3px 20px #000000;
+    position: absolute;
+    left: 530px;
+    top:300px;
+
+    border-width: 2px;
+    border-color: white;
+    border-radius: 5px;
+    border-style: groove;
+}
+#pic_4 {
+    width: 190px;
+    height: 150px;
+    margin-right: 18px;
+
+    margin-top: 5px;
+
+    border-width: 2px;
+    border-color: white;
+    border-radius: 5px;
+    border-style: groove;
+
+
+    float: left;
+
+
+}
+
+.div_clear{
+    clear: both;
+}
+
+#pic_5{
+    width: 190px;
+    height: 150px;
+    margin-right: 17px;
+
+    margin-top: 5px;
+
+    border-width: 2px;
+    border-color: white;
+    border-radius: 5px;
+    border-style: groove;
+
+
+    display: inline-block;
+
+    float: left;
+}
+#pic_6{
+    width: 209px;
+    height: 150px;
+
+    margin-top: 5px;
+
+    border-width: 2px;
+    border-color: white;
+    border-radius: 5px;
+    border-style: groove;
+
+    float: left;
+}
+
+#pic_clear{
+    clear: both;
+}
+#div_pic_inner{
+
+
+    float: left;
+}
+
+
+
+
+#clear_box_body{
+    clear: both;
+}
+
+
+
+#div_word{
+    height: 300px;
+    width: 50%;
+
+    float: left;
+
+
+
+}
+
+#word_1{
+    font-family: 微软雅黑;
+    font-size: 75px;
+    color: white;
+    text-align: center;
+
+    left:2px;
+}
+
+#word_2{
+    color: white;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+#word_3{
+    color: white;
+    width: 30%;
+}
+#word_4{
+    height: 300px;
+    font-size: 50px;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+
+
+section, section div {
+    /* See it in slo-mo, you can change this */
+    transition-duration: .6s;
+}
+
+
+
+section, .button { transition-timing-function: ease; }
+
+section {
+
+    position: relative;
+    padding: .375rem .375rem 0;
+    background: #A9ADB6;
+    border-radius: .25rem;
+    perspective: 300;
+    box-shadow: 0 -1px 2px #fff, inset 0 1px 2px rgba(0,0,0,.2), inset 0 .25rem 1rem rgba(0,0,0,.1);
+    height: 60px;
+    box-shadow: 3px 3px 20px #000000;
+    width: 400px;
+    left: 160px;
+
+}
+
+
+.button { opacity: 0;
+            font-size: 30px;
+    text-align: center;
+}
+
+.cover {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+    font: 1.25em/2 "icon";
+    color: white;
+    text-align: center;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.innie, .outie, .spine, .shadow { position: absolute; width: 100%; }
+
+.innie, .outie {
+    height: 100%;
+    background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0,0,0,.1) 100%);
+    border-radius: .25rem;
+}
+
+svg {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.25))
+}
+
+.innie {
+    background-color: #67E2FE;
+    text-shadow: 0 -2px 4px rgba(0,0,0,.2);
+}
+
+.spine {
+    top: .25rem;
+    background: #20C7F3;
+    height: .25rem;
+    transform: rotateX(90deg);
+    transform-origin: center top;
+}
+
+.shadow {
+    top: 100%;
+    left: 0;
+    height: 3.5rem;
+    transform-origin: center top;
+    transform: rotateX(90deg);
+    opacity: 0;
+    z-index: 0;
+    background-image: -webkit-linear-gradient(top, rgba(0,0,0,.6) 0%, transparent 100%);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, transparent 100%);
+    border-radius: .4rem;
+
+}
+
+.outie {
+    background-color: #2EC8FA;
+    transform: translateZ(.25rem);
+    text-shadow: 0 2px 4px rgba(0,0,0,.2);
+}
+
+section:hover { background: #EBEFF2; }
+section:hover .button { opacity: 1; }
+
+section:hover .cover, section:hover .innie, section:hover .spine, section:hover .outie, section:hover .spine { transition-timing-function: cubic-bezier(.2,.7,.1,1.1); }
+
+section:hover .cover { transform: rotateX(-120deg);  }
+
+section:hover .innie { background-color: #3ADAFC; }
+section:hover .spine { background-color: #52B1E0; }
+section:hover .outie { background-color: #2174A0; color: rgba(255,255,255,0); }
+
+section:hover .shadow {
+    opacity: 1;
+    transform: rotateX(45deg) scale(.95);
+}
+
+
+small {
+    font: .8rem/1 sans-serif;
+    padding-top: 4rem;
+    color: #777;
+}
+small a { color: #222; text-decoration: none; border-bottom: thin solid #ccc; }
+small a:hover { border-bottom-color: #222; }

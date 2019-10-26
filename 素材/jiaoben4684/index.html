@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>jQuery带箭头的图片滑动切换代码 - 站长素材</title>
+
+<style>
+.win{
+	
+	width:700px;height:300px;border:1px solid #ccc;margin:20px auto;position:relative;
+	overflow: hidden;
+}
+.title{
+	width:100%;height:30px;background:#eee;position: relative;
+}
+.title a{
+	/*padding:0 30px;*/width:20%;height:100%;float:left;text-align: center;line-height: 30px;font-size: 15px;color:#009797;text-decoration: none;position: relative;z-index: 1;
+}
+.title .float{
+	width:20%;height:100%;background: #009797;position: absolute;
+}
+.box{
+	width:100%;height:270px;position: relative;
+}
+.box div{
+	width:100%;height: 100%;position: absolute;left:-100%;font-size: 70px;text-align: center;line-height: 270px;top:0;color:#fff;
+}
+.rightB{
+	width:50px;height:70px;font-size: 20px;color:#fff;background: rgba(0,0,0,0.5);position: absolute;right:0;top:45%;line-height:70px;text-align: center;cursor: pointer;display: none;
+}
+.leftB{
+	width:50px;height:70px;font-size: 20px;color:#fff;background: rgba(0,0,0,0.5);position: absolute;left:0;top:45%;line-height:70px;text-align: center;cursor: pointer;display: none;
+}
+.color1{background: #FFB12F;}
+.color2{background: #00C378;}
+.color3{background: #26B2E3;}
+.color4{background: #E84C3D;}
+.color5{background: #F831FD;}
+</style>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var win=$(".win");
+	var links=$(".title a");
+	var float=$(".float");
+	var divs=$(".box div");
+	var num1=0;  //ǰݵ±
+	var num2=0;
+	win.hover(function(){
+		$(".leftB,.rightB").css("display","block");
+	},function(){
+		$(".leftB,.rightB").css("display","none");
+	});
+	$(".leftB").click(function(){
+		divs.finish();
+		float.stop(true);
+		var temp=num1;
+		num1--;
+		if(num1==-1){
+			num1=4;
+		}
+		divs.eq(num1).css("left",700).animate({left:0});
+		divs.eq(temp).animate({left:-700});
+		links.css("color","#009797");
+		float.animate({left:links.eq(num1).position().left})
+		links.eq(num1).css("color","#fff");
+	});
+	$(".rightB").click(function(){
+		divs.finish();
+		float.stop(true);
+		var temp=num1;
+		num1++;
+		if(num1==5){
+			num1=0;
+		}
+		divs.eq(num1).css("left",-700).animate({left:0});
+		divs.eq(temp).animate({left:700});
+		links.css("color","#009797");
+		float.animate({left:links.eq(num1).position().left})
+		links.eq(num1).css("color","#fff");
+	});
+	links.hover(function(){
+		//
+		divs.finish();
+		float.stop(true);
+		links.css("color","#009797");
+		var that=$(this);
+		var lefts=$(this).position().left;
+		float.animate({left:lefts},function(){
+			that.css("color","#fff");
+		})
+		//
+		//ݱ仯
+		var index=$(this).index(".title a");
+		num2=index;
+		if(num1==num2){
+			return;
+		}else if(num1<num2){
+			divs.eq(num2).css("left",700).animate({left:0});
+			divs.eq(num1).animate({left:-700});
+		}else if(num1>num2){
+			divs.eq(num2).css("left",-700).animate({left:0});
+			divs.eq(num1).animate({left:700});
+		}
+		num1=num2;
+		num2="";
+	},function(){
+
+	})
+})
+</script>
+</head>
+<body>
+
+<div class="win">
+
+	<div class="title">
+		<a href="javascript:;" style="color:#fff">1</a>
+		<a href="javascript:;">2</a>
+		<a href="javascript:;">3</a>
+		<a href="javascript:;">4</a>
+		<a href="javascript:;">5</a>
+		<div class="float"></div>
+	</div>
+	
+	<div class="box">
+		<div class="color1" style="left:0">page1</div>
+		<div class="color2">page2</div>
+		<div class="color3">page3</div>
+		<div class="color4">page4</div>
+		<div class="color5">page5</div>
+	</div>
+	
+	<div class="leftB">&lt;</div>
+	<div class="rightB">&gt;</div>
+	
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>

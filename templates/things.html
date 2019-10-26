@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{dict['log_name']}}的发布</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/things.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/bootstrap-4-dist/css/bootstrap.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="/static/css/carousel.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery-ui.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+</head>
+<body style="background-color: #e1e3ff">
+    <div id="div_head" class="navbar navbar-light navbar-expand-sm bg-light container-fluid form-inline">
+        <div class="navbar-brand ">
+            <a href="#" style="border-style: groove;border-radius: 5px;box-shadow: 3px 3px 20px #000000;border-width: 1px;border-color: white">CQUswzl</a>
+        </div>
+        <div id="contant" class="collapse navbar-collapse">
+            <ul   class="navbar navbar-nav" style="font-size: 15px">
+                <li class="nav-item"><a href="/" class="nav-link">主页</a></li>
+                <li class="nav-item"><a href="/search" class="nav-link">搜索</a></li>
+                <li class="nav-item"><a href="/release" class="nav-link">发布</a></li>
+                <li class="nav-item"><a href="/login/1" class="nav-link">登录/用户</a></li>     <!--成功后跳转到第一页-->
+                <li class="nav-item"><a href="/about" class="nav-link">关于我们/加入我们</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">怎样使用？</a>
+                </li>
+            </ul>
+            <span id="span"></span>
+            <div id="search" class="row">
+                <form class="   col-10">
+                    <div class="row form-control">
+                        <input name="search"  type="text" class="form-control  form-inline col-8" placeholder="Search">
+                        <button class="btn btn-info">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#contant">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="myModalLabel" style="font-size: 20px">请你像我这样做</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    这是主要内容
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><span>我知道了</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="div_outer">
+        <div id="div_main">
+            <div id="div_main_helper">
+                <div id="div_main_fabuzhe">
+                    <div id="div_main_fabuzhe_touxiang">
+                        <img id="div_main_fabuzhe_touxiang_img" src="/static/img/bg-body1.jpg">
+                    </div>
+                    <div id="div_main_fabuzhe_xinxijiansuo">
+                        <div style="display: inline-block">
+                            <span class="glyphicon glyphicon-user" style="color: #007bff;font-size: 20px"></span>
+                            <a href="{{dict['user_url']}}" id="fabuzhe_name" style="display: inline-block;font-size: 25px;color: black">{{dict['log_name']}}</a>
+                        </div>
+                        <div style="display: inline-block;position: absolute" id="fenxiang">
+                            <button class="btn btn-primary"><span class="glyphicon glyphicon-share"></span>分享此则</button>
+                        </div><!--分享-->
+                        <div id="div_main_fabuzhe_xinxijiansuo_title">
+                            {{dict['title']}}
+                        </div>
+                    </div>
+                    <div id="liulanxinxi"
+                         style="float: right;
+                                right: 0;
+                             position: absolute;
+                             color: white;
+                             font-size:12px;
+                             font-weight: 800;
+                             border-bottom-right-radius: 5px;
+                             background-color: #542f6a;
+                             padding: 2px;
+                             box-shadow: -5px 0 5px -4px black;
+                              z-index: 50;">
+                        <p class="information_date"><span class="glyphicon glyphicon-calendar"></span>日期:{{dict['release_time']}}</p>
+                        <p class="informain_look_number"><span class="glyphicon glyphicon-eye-open"></span>浏览次数:{{dict['see_number']}}</p>
+                        <p class="informain_say_number"><span class="glyphicon glyphicon-pencil"></span>评论数:{{dict['write_number']}}</p>
+                    </div>
+                    <div class="clear_float"></div>
+
+
+                </div>
+            </div>
+            <div id="div_jianxi_2"></div><!--这是中间间隙-->
+            <div id="div_main_information">
+                <div id="div_main_information_img">
+                    <img id="img_main_information_img" src="{{dict['picture_url']}}">
+                </div>
+                <div id="div_main_information_table">
+                    <table class="table table-dark table-hover" style="border-radius: 5px">
+                        <thead>
+                        <tr>
+                            <th style="font-size: 15px;font-weight: 700">信息表/Information</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>丢失/拾取时间</td>
+                            <td>{{dict['time']}}</td>
+                        </tr>
+                        <tr>
+                            <td>丢失/拾取地点</td>
+                            <td>{{dict['place']}}</td>
+                        </tr>
+                        <tr>
+                            <td>联系方式</td>
+                            <td>{{dict['place']}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="div_textarea">
+                    <div id="div_textarea_outer">
+                        <div id="div_textarea_inner">主要描述</div>
+                    </div>
+                    <div id="div_textarea_information">
+                        {{dict['description']}}
+                    </div>
+                </div>
+                <div style="padding-top: 20px;text-align: center">
+                    <button class="btn btn-primary" onclick="open_small_window()">我要认领/我发现了</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="div_jianxi_1"></div>  <!--这是中间的间隙-->
+
+        <div id="div_right">
+            <div id="div_right_login">
+                <form action="http://127.0.0.1:5000/login/things" method="post">
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-user"></span><label>用户名：</label>
+                        <input  class="form-control" id="username" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-pencil"></span><label >密码：</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input id="remember" class="form-check-input" type="checkbox" style="cursor: pointer"> 记住密码
+                        </label>
+                    </div>
+                    <div style="text-align: center">
+                        <button type="submit" class="btn btn-primary" style="margin: 0 auto">登录/Login</button>
+                        <span style="display: inline-block;vertical-align: top">
+                            <a href="#">没有账号？</a>
+                            <a href="#" style="display: block">账号管理</a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div id="div_jianxi_2" style="height: 20px"></div>
+            <div id="div_right_information">
+                <div id="div_right_information_youqinglianjie_outer">
+                    <div id="div_right_information_youqinglianjie">友情链接</div>
+                </div>
+                <div id="div_right_information_lianjie_1">
+                    <span style="color: black;font-size: 20px;box-shadow: 5px 0 5px -4px #f1b0b7">失物招领群：</span>
+                    <a id="a1" href="#">一群</a>
+                    <a id="a2" href="#">二群</a>
+                    <a id="a3" href="#">三群</a>
+                </div>
+                <div id="div_right_information_lianjie_2">
+                    <a style="color: black;font-size: 20px;box-shadow: 5px 0 5px -4px #f1b0b7">网站链接：</a>
+                    <a id="a4" href="#">重庆大学教务网</a>
+                    <a id="a5" href="#">重庆大学学工网</a>
+                    <a id="a6" href="#">百度</a>
+                </div>
+            </div>
+            <div id="div_jianxi_3" style="height: 20px"></div>
+            <div id="div_right_guanggao">广告位 广告位 广告位</div>
+        </div>
+    </div>
+
+    <div id="div_foot">
+        <div id="div_foot_jianxi"></div>
+    </div>
+    <div id="outer_small_window" style=" visibility: hidden;opacity:0.5;background-color: black;z-index: 100;width: 100%;height: 1000px;position: fixed;top: 0;text-align: center">
+        <div id="inner_small_window" style="position:relative;width: 60%;height: 30%;background-color: whitesmoke;border-radius: 5px;margin: 0 auto">
+            <form method="post">
+
+            </form>
+        </div>
+    </div>
+    <script>
+        function open_small_window() {
+            document.getElementById('outer_small_window').style.setProperty(
+                'visibility','visible'
+            )
+        }
+        function close_small_window() {
+            document.getElementById('outer_small_window').style.setProperty(
+                'visibility','hidden'
+            )
+        }
+        $(document).ready(
+            function () {
+                document.getElementById("div_outer").style.setProperty("top", document.getElementById("div_head").offsetHeight + 20 + 'px');
+                var fabuzhe_js = document.getElementById("div_main_fabuzhe");
+                fabuzhe_js.children[1].style.setProperty('width', fabuzhe_js.offsetWidth - 160 + 'px');
+                fabuzhe_js.children[1].style.setProperty('height', fabuzhe_js.offsetHeight + 'px');
+                document.getElementById("div_right").style.setProperty(
+                    "width", document.getElementById("div_outer").offsetWidth - document.getElementById("div_main").offsetWidth - document.getElementById("div_jianxi_1").offsetWidth - 10 + 'px');
+                document.getElementById("fenxiang").style.setProperty(
+                    'left', document.getElementById("div_main_fabuzhe_xinxijiansuo").offsetWidth - document.getElementById("fenxiang").offsetWidth + 'px'
+                );
+                var div_img_js = document.getElementById("div_main_information_img");
+                var div_table_js = document.getElementById("div_main_information_table");
+                div_img_js.style.setProperty('height', (div_img_js.offsetWidth / 4) * 3 + 'px');
+                div_table_js.style.setProperty('height', div_img_js.offsetHeight + 'px');
+                document.getElementById("liulanxinxi").style.setProperty('top',
+                    document.getElementById("div_main_fabuzhe_xinxijiansuo").offsetHeight - document.getElementById("liulanxinxi").offsetHeight + 20 + 'px'
+                );
+                /* 分享此则*/
+
+
+//               foot
+                document.getElementById("div_foot_jianxi").style.setProperty("height", document.getElementById("div_head").offsetHeight + 40 + 'px');
+
+                if ("{{dict['login_state']}}" == "yes") {
+                    document.getElementById('div_right_login').style.setProperty(
+                        "display", "none"
+                    )
+                }
+                if (window.screen.width < 800) {
+                    document.getElementById('div_right').style.setProperty(
+                        "display", "none"
+                    )
+                }
+
+                //inner 小窗口上下居中
+                document.getElementById("inner_small_window").style.setProperty(
+                    'top',(document.getElementById("outer_small_window").offsetHeight-document.getElementById("inner_small_window").offsetHeight)/4+"px"
+                )
+
+            })
+    </script>
+</body>
+</html>

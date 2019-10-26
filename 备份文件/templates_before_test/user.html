@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang=zh">
+<head>
+    <meta charset="UTF-8">
+    <title>About user</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/bootstrap-4-dist/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/user.css" type="text/css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/user.js"></script>
+</head>
+<body>
+    <div id="div_head" class=" navbar navbar-light navbar-expand-sm bg-light container-fluid form-inline">
+        <div class="navbar-brand ">
+            <a href="#" style="border-style: groove;border-radius: 5px;box-shadow: 3px 3px 20px #000000;border-width: 1px;border-color: white">CQUswzl</a>
+        </div>
+        <div id="contant" class="collapse navbar-collapse">
+            <ul   class="navbar navbar-nav" style="font-size: 15px">
+                <li class="nav-item"><a href="http://127.0.0.1:5000" class="nav-link">主页</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">搜索</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">发布</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">登录/用户</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">关于我们/加入我们</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">怎样使用？</a>
+                </li>
+            </ul>
+            <span id="span"></span>
+            <div id="search" class="row">
+                <form class="   col-10">
+                    <div class="row form-control">
+                        <form>
+                            <input  type="text" class="form-control  form-inline col-8" placeholder="Search">
+                            <button class="btn btn-info" type="submit">搜索</button>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#contant">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="myModalLabel" style="font-size: 20px">请你像我这样做</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    这是主要内容
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><span>我知道了</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main">   <!--this is main body-->
+        <div id="main_forOtherThing">
+
+        </div>
+        <div id="main_head">    <!--for long head of user information-->
+            <div id="div_main_fabuzhe">
+                <div id="div_main_fabuzhe_touxiang">
+                    <img id="div_main_fabuzhe_touxiang_img" src="../static/img/bg-body1.jpg">
+                </div>
+                <div id="div_main_fabuzhe_xinxijiansuo">
+                    <div style="display: inline-block">
+                        <span class="glyphicon glyphicon-user" style="color: #007bff;font-size: 20px"></span>
+                        <a href="#" id="fabuzhe_name" style="display: inline-block;font-size: 25px;color: black">来自星星的小橘</a>
+                    </div>
+                    <div style="display: inline-block;position: absolute" id="fenxiang">
+                        <button onclick="fabu()" class="btn btn-primary">分享此则</button>
+                    </div><!--分享-->
+                    <div id="div_main_fabuzhe_xinxijiansuo_title">
+                        重庆大学失物招领平台————用心为同学带来便利
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main_body">
+
+        </div>
+        <div id="main_foot">
+
+        </div>
+    </div>
+</body>
+</html>

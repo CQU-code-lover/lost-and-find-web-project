@@ -1,0 +1,231 @@
+from flask import *
+import mysql.connector
+import re
+import os
+import config
+import json
+import time
+
+app = Flask(__name__, template_folder='templates')
+app.config.from_object('config')
+app.config['SECRET_KEY'] = os.urandom(24)
+user_log_number=0
+app.config.from_object('config')
+app.config['AIM_DIR']='things_inf_pic'#存储文件名
+app.config['BASE_DIR']=os.path.abspath(os.path.dirname(__file__)) #当前项目绝对位置
+app.config['SECRET_KEY'] = os.urandom(24)
+app.config['FILE_DIR'] = os.path.join(app.config['BASE_DIR'], app.config['AIM_DIR'])  # 图片存储文件夹地址
+class SQLconnector():
+    def __init__(self):
+        self._init_list={
+            'mul_select_num':5
+        }
+        self.DataBaseConfig = {
+            'host': '127.0.0.1',
+            'user': 'root',
+            'password': 'deng13508108659',
+            'port': 3306,
+            'database':'test',
+            'charset': 'utf8'
+        }
+    def _new_connector(self):#生成连接器
+        try:
+            self.connector = mysql.connector.connect(**self.DataBaseConfig)
+            self.connector_cursor = self.connector.cursor()
+        except:
+            print('connect fails!') #for test
+    def run(self,sqlstr):#执行sql语句 并且关闭数据库  返回结果
+        self.sqlstr=sqlstr
+        if self.sqlstr=='':
+            print("run stop because of string is not input")
+            return []
+        else:
+            self._new_connector()
+            try:
+                self.connector_cursor.execute(self.sqlstr)
+                result = self.connector_cursor.fetchall()
+            except mysql.connector.Error as e:
+                print('connect fails!{}'.format(e))
+                result=[]
+            finally:
+                self.connector.commit()
+                self._close()
+                return result
+    def test_mul_insert(self,sqlstr,data):  #输入表达式 与 列表型元组数据
+        self.sqlstr=sqlstr
+        self.data=data
+        self._new_connector()
+        self.connector_cursor.executemany(self.sqlstr,self.data)
+        self.connector.commit()
+        self.connector_cursor.close()
+        self.connector._close()
+
+    def one_select(self,sqlstr):
+        self.sqlstr=sqlstr
+        if self.sqlstr=='':
+            print("run stop because of string is not input")
+            return []
+        else:
+            self._new_connector()
+            try:
+                self.connector_cursor.execute(self.sqlstr)
+                result=self.connector_cursor.fetchall()
+            except mysql.connector.Error as e:
+                print('connect fails!{}'.format(e))
+                result=[]
+            finally:
+                self.connector.close()
+                self.connector_cursor.close()
+            return result
+    def next(self):
+        return self.connector_cursor.next()
+    def _close(self):
+        self.connector_cursor.close()
+        self.connector.close()
+    def insert(self,sqlstr):#执行sql语句 并且关闭数据库  返回结果
+        self.sqlstr=sqlstr
+        if self.sqlstr=='':
+            print("run stop because of string is not input")
+            return []
+        else:
+            self._new_connector()
+            try:
+                self.connector_cursor.execute(self.sqlstr)
+            except mysql.connector.Error as e:
+                print('connect fails!{}'.format(e))
+            finally:
+                self.connector.commit()
+                self._close()
+def html_returner(html_name):
+    dbc=SQLconnector()
+    user_state=session.get('user_state')
+    user_name=session.get('user_name')
+    dict={}                                        #dict of information for html fuller
+    if html_name=='main':
+        if user_state==None:
+            return template_rendered("main.html")
+        else:
+            return template_rendered('main.html')
+    elif html_name=='fabu':
+        if user_state==None:
+            return render_template("fabu.html")
+        else:
+            dict["user_name"]=user_name
+            dict["head_picture_url"]=dbc.run("select head_picture_url from user_inf where user_name ="+user_name)
+            dict["log_name"]=dbc.run("select log_name from user_inf where user_name ="+user_name)
+            return render_template("fabu.html")
+    elif html_name=='user':
+        if user_name==None:
+            return template_rendered("main.html")
+        else:
+            pass
+@app.route('/login/<traceback_html_name>',methods=['GET','POST'])  #traceback用于在导航登录以后回到原来
+def login(traceback_html_name):
+    global user_log_number  #记录历史登录
+    if request.method=='POST':
+        dbc = SQLconnector()
+        user_name=request.form['user_name']
+        password=request.form['password']
+        sqlstr = 'select password from user_inf where user_name=' + user_name
+        #测试 当没有此username的情况
+        if dbc.run(sqlstr)[0][0]==password:
+
+            session['user_state'] = True
+            user_log_number+=1    #用户记录
+            session['user_name']=user_name
+            return redirect(url_for('release'))
+        else:
+            return "error"    #此处为测试  以后使用闪现优化 返回错误
+    else:
+        #get 方法
+        return template_rendered('login.html',traceback_html_name=traceback_html_name)  #回溯机制写在log.html模版中 post到log/traceback
+
+
+@app.route('/')
+def start():
+        return render_template('main.html')
+@app.route('/release',methods=['POST','GET'])
+def release():
+
+    session['user_name']='1209895097'    #测试长期登录录入器
+    session['user_state']=True
+
+
+
+    if request.method=='GET':
+        if session.get("user_state")!=True:
+            return render_template('fabu_state.html')   #返回静态化fabu.html   静态化要屏蔽掉跳按钮
+        else:
+            dbc = SQLconnector()
+            user_state = session.get('user_state')
+            user_name = session.get('user_name')
+            dict = {}
+            return render_template('fabu.html',dict=dict)
+    else:
+        if session.get('user_state')!=True:              #不登录的测试
+            return "登录后尝试"    #测试使用 一般情况不会跳转到此处
+        else:
+            #数据库存储部分
+            user_name=session.get('user_name')
+            dbc=SQLconnector()
+            release_time=str(int(time.time()))#此处需要修改
+            form_type=request.form.get("type")
+            #合法性验证
+            try:
+                file_dir=app.config['FILE_DIR']
+                if not os.path.exists(file_dir):
+                    os.makedirs(file_dir)
+                f = request.files['picture']
+                if f and ('.' in f.filename and f.filename.split('.', 1)[1] in set(['png', 'jpg', 'JPG', 'PNG', 'gif', 'GIF'])):
+                    fname = f.filename
+                    ext = fname.split('.', 1)[1]  # 获取文件后缀
+                    unix_time = int(time.time())
+                    new_filename = str(unix_time)+user_name + '.' + ext  # 修改文件名
+                    f.save(os.path.join(file_dir, new_filename))  # 保存文件到upload目录
+                    picture_name = new_filename#此处的url实际指的是文件的名称
+            except:
+                picture_name='no_pic.png'
+
+
+
+            sqlstr="insert into things_inf " \
+                   "(release_time,title,name,user_name,contact_way,description,phone_number,place,picture_name,type) " \
+                   +"values (" \
+                   +"'"+release_time+"'"\
+                   +","+"'"+request.form.get("form_title")+"'"\
+                   +","+"'"+request.form.get("object_name")+"'"\
+                   +","+"'"+user_name+"'"\
+                   +","+"'"+request.form.get("connect_way")+"'"\
+                   +","+"'"+request.form.get("description")+"'"\
+                   +","+"'"+request.form.get("phone_number")+"'"\
+                   +","+"'"+request.form.get("place")+"'"\
+                   +","+"'"+picture_name+"'"\
+                   +","+"'"+form_type+"'"\
+                   +")"
+            print(sqlstr)
+            dbc.insert(sqlstr)
+
+            return '成功'
+@app.route('/things')
+def things_text():
+    return render_template('things.html')
+@app.route('/user')
+def user_test():
+
+    return render_template('user.html')
+@app.route('/for',methods=['GET', 'POST'])
+def form_test():
+    if request.method=='POST':
+        m=request.form.get('form_title')
+        print(type(m))
+        print(type(request.form))
+        print(m)
+        return str(type(jsonify(request.form)))
+    else:
+        return 'just ask for the request of method POST'
+
+dbc=SQLconnector()
+
+
+if __name__=="__main__":
+    app.run(debug=True)

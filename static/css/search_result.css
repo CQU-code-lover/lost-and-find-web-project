@@ -1,0 +1,128 @@
+body{
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    background-color: #f6f6f6  !important;
+}
+#back_helper_div{
+    background-color: black;
+    z-index: 100000;
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    opacity: 0.5;
+}
+#div_head{
+    box-shadow: 3px 3px 20px black;
+    position: fixed;
+    z-index: 10000;
+}
+#div_main_head{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: left;
+}
+#div_main{
+    margin:0 auto;
+    width: 80%;
+    text-align: center;
+    position: relative;
+}
+#div_main_head_left_title,#div_main_head_right_title{
+    border-bottom: 1px #d5d5d5 solid;
+    border-radius: 2px;
+}
+#div_main_head_left_inf ul li{
+    float: left;
+    line-height: 40px;
+    height: 40px;
+    width: 94px;
+    cursor: pointer;
+    text-align: -webkit-match-parent;
+}
+#div_main_inf{
+    width: 100%;
+    margin: 0 auto ;
+    position: relative;
+}
+#div_main_head_left {
+    background: #fff;
+    border: 1px #d5d5d5 solid;
+    border-radius: 2px;
+    float: left;
+    height: 200px;
+    overflow: hidden;
+}
+#div_main_head_right{
+    background: #fff;
+    border: 1px #d5d5d5 solid;
+    border-radius: 2px;
+    float: right;
+    height: 200px;
+}
+.inf_box{
+    background: #fff;
+    border: 1px #d9d9d9 solid;
+    width: 264px;
+    float: left;
+    padding: 10px 11px 0;
+    margin: 0 0 0 0;
+    position: absolute;
+}
+.clear{
+    clear: both;
+}
+.box_img{
+    position: relative;
+    width: 100%;
+}
+.inf_foot{
+    position: relative;
+    font-size: 12px;
+    background: #f6f6f6;
+    border-top: 1px solid #e7e7e7;
+    box-shadow: 0 1px 0 0 #fff inset;
+    padding: 5px 11px;
+    margin:0 -11px;
+    color: #8B8B8C;
+    height: 36px;
+    overflow: hidden;
+    text-align: left;
+}
+.title{
+    padding: 5px 0;
+}
+.inf_foot div{
+    display: inline-block;
+}
+.release_time{
+    position: absolute;
+}
+.black_boader{
+    border-style: groove;
+    border-width: 2px;
+    border-color: black;
+}
+.yellow_border{
+    border-style: groove;
+    border-width: 2px;
+    border-color: yellow;
+}
+.bule_border{
+    border-style: groove;
+    border-width: 2px;
+    border-color: blue;
+}
+#div_foot{
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background-color: #5bc0de;
+}
+
+
+/*日期插件专用css样式*/
+.everyWeekDay .weekday,.everyDay .days {/*解决span不支持width属性*/display: -moz-inline-box;display: inline-block;margin: 5px 0 0 20px;text-align: center;width: 20px;border: 1px solid #F7F7F7;cursor: pointer;}
+.marginTop{margin-top: 5px;}
+.selectStyle{padding-left: 10px;border: none;border-radius: 3px;outline: none;appearance: none;-moz-appearance: none;-webkit-appearance: none;margin: 0 10px 0 10px;width: 60px;border-color: #0FB9EF;color: #0FB9EF;}

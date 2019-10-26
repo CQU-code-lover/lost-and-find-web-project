@@ -1,0 +1,13 @@
+.box_shadow{
+    box-shadow: 10px 10px 10px black;
+}
+#div_head{
+    box-shadow: 3px 3px 20px black;
+    position: fixed;
+    z-index: 1000;
+}
+#main_forOtherThing{
+    background-color: #5bc0de;
+    height: 100px;
+
+}

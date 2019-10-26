@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang=zh">
+<head>
+    <meta charset="UTF-8">
+    <title>About user</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/bootstrap-4-dist/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/user.css" type="text/css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/user.js"></script>
+</head>
+<body>
+    <div id="div_head" class=" navbar navbar-light navbar-expand-sm bg-light container-fluid form-inline">
+        <div class="navbar-brand " id="brand">
+            <a href="#" style="border-style: groove;border-radius: 5px;box-shadow: 3px 3px 20px #000000;border-width: 1px;border-color: white">CQUswzl</a>
+        </div>
+        <div id="contant" class="collapse navbar-collapse">
+            <ul  id="nav" class="navbar navbar-nav" style="font-size: 15px">
+                <li class="nav-item"><a href="http://127.0.0.1:5000" class="nav-link">主页</a></li>
+                <li class="nav-item"><a href="/search" class="nav-link">搜索</a></li>
+                <li class="nav-item"><a href="/release" class="nav-link">发布</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link">登录/用户</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">关于我们/加入我们</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">怎样使用？</a>
+                </li>
+            </ul>
+            <span id="span"></span>
+            <div id="search" class="row">
+                <form class="col-10">
+                    <div class="row form-control">
+                        <form>
+                            <input name="search"  type="text" class="form-control  form-inline col-8" placeholder="Search">
+                            <button class="btn btn-info" type="submit">搜索</button>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+
+//            调整search的位置
+            function doc(id) {
+                return document.getElementById(id)
+            }
+            document.getElementById('span').style.setProperty(
+                "width",doc('contant').offsetWidth-doc('nav').offsetWidth-doc('search').offsetWidth+'px'
+            );
+
+//            手机端隐藏search
+            if (window.width<=768){
+                doc('search').style.setProperty(
+                    'display','none'
+                )
+
+
+
+            }
+
+
+        </script>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#contant">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="myModalLabel" style="font-size: 20px">请你像我这样做</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    这是主要内容
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><span>我知道了</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--主要的body部分-->
+
+    <div id="main" style="margin:0 80%;background-color: black;padding: 5px 5px;height: 500px">
+        <!--主要的user信息   在左边-->
+        <div id="user_inf"></div>
+        <!--右边的动态-->
+        <div id="user_moving"></div>
+        <div id="right_inf"></div>
+    </div>
+    <script>
+        function set_style(id,seted,value) {
+            doc(id).style.setProperty(
+                seted,value
+            )
+        }
+        set_style('main','position','absolute');
+        set_style('main','top','10px'+doc('div_head').offsetHeight)
+    </script>
+</body>

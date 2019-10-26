@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/things.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+</head>
+<body style="background-color: #e1e3ff;position: relative">
+    <div id="head" class="navbar navbar-light navbar-expand-sm bg-light container-fluid form-inline">
+        <div class="navbar-brand ">
+            <a href="#" style="border-style: groove;border-radius: 5px;box-shadow: 3px 3px 20px #000000;border-width: 1px;border-color: white">CQUswzl</a>
+        </div>
+        <div id="contant" class="collapse navbar-collapse">
+            <ul   class="navbar navbar-nav" style="font-size: 15px">
+                <li class="nav-item"><a href="/" class="nav-link">主页</a></li>
+                <li class="nav-item"><a href="/search" class="nav-link">搜索</a></li>
+                <li class="nav-item"><a href="/release" class="nav-link">发布</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">登录/用户</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">关于我们/加入我们</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#myModal">怎样使用？</a>
+                </li>
+            </ul>
+            <span id="span"></span>
+            <div id="search" class="row">
+                <form class="   col-10" action="/search" method="post">
+                    <div class="row form-control">
+                        <input name="search"  type="text" class="form-control  form-inline col-8" placeholder="Search">
+                        <button class="btn btn-info" type="submit">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#contant">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="myModalLabel" style="font-size: 20px">请你像我这样做</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    这是主要内容
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><span>我知道了</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main" style="text-align: center;position: relative">
+        <div id="login" style="
+                padding: 10px;
+                background-color: whitesmoke;
+                border-radius: 5px;
+                width: 60%;
+                margin: 0 auto">
+            <form action="/for_login/{{dict["traceback_url"]}}" method="post">
+                <div class="form-group" style="text-align: left">
+                    <span class="glyphicon glyphicon-user"></span><label>用户名：</label>
+                    <input name="user_name"  class="form-control" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group" style="text-align: left">
+                    <span class="glyphicon glyphicon-pencil"></span><label >密码：</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input name="remember" class="form-check-input" type="checkbox" style="cursor: pointer"> 记住密码
+                    </label>
+                </div>
+                <div style="text-align: center">
+                    <button type="submit" class="btn btn-primary" style="margin: 0 auto">登录/Login</button>
+                    <span style="display: inline-block;vertical-align: top">
+                            <a href="#" onclick="m()">没有账号？</a>
+                            <a href="#" style="display: block">账号管理</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="display: none;text-align: center" id="div_success">
+        <div style="background-color: whitesmoke;box-shadow: 5px 5px 1px black;border-radius: 5px;display: inline-block;padding: 20px 50px">
+            <p style="font-weight: 800;font-size: large;color: #007bff">登录成功</p>
+            <button onclick="goto()" class="btn btn-primary">好的</button>
+        </div>
+    </div>
+    <script>
+        function goto() {
+            window.location.href="/"+"{{dict['traceback_url']}}"
+        }
+        $(document).ready(
+            function () {
+                var state="{{dict['state']}}";
+                document.getElementById("main").style.setProperty(
+                    "top",document.getElementById("head").offsetHeight+"px");
+
+                if (state=='success'){
+                    document.getElementById('head').style.setProperty(
+                        "display","none"
+                    );
+                    document.getElementById("main").style.setProperty(
+                        "display","none"
+                    );
+                    document.getElementById('div_success').style.setProperty(
+                        "display","block"
+                    );
+                }
+                else if (state=='fail'){
+                    alert('登录失败')
+                }
+                document.getElementById('div_success').style.setProperty(
+                    "position","relative"
+                );
+                document.getElementById('div_success').style.setProperty(
+                    "top","5px"
+                ) ;
+
+            }
+        )
+    </script>
+
+</body>
+</html>

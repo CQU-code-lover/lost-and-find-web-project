@@ -1,0 +1,140 @@
+body{
+    margin: 0px;
+}
+#span{
+    width: 40%;
+}
+#div_head{
+    box-shadow: 3px 3px 20px black;
+    position: fixed;
+    z-index: 10000;
+}
+
+.cheak_blak{
+    border-style: groove;
+    border-color: black;
+    border-width: 1px;
+}
+.cheak_yellw{
+    border-style: groove;
+    border-color: yellow;
+    border-width: 1px;
+}
+.clear_float{
+    clear: both;
+}
+.box_shadow{
+    box-shadow: 3px 3px 20px #000000
+}
+.change_pic{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+#div_roll_things{
+
+}
+.roll_p{
+    text-align: center;
+    font-size: 20px;
+}
+@media screen and (max-width: 1050px) {
+    #caroursel,#div_jianxi2{
+        display: none;
+    }
+}
+@media screen and (min-width: 1050px)  {
+    #roll_for_phone{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    #search,#information_for_pc{
+        display: none;
+    }
+
+}
+@media screen and (min-width: 768px) {
+    #search_for_phone,#information_for_phone{
+        display: none;
+    }
+}
+#daohang_for_pc  a{
+    margin: auto 20px;
+    float: left;
+}
+#daohang_for_pc  p{
+    font-size: 30px;
+    color: white;
+    font-weight: 900;
+    font-family: 楷体;
+}
+#information_for_pc_main li{
+    height: 150px;
+    margin-top: 5px;
+}
+#information_foot ul li{
+    float: left;
+    margin-left: 5px;
+}
+#caroursel ul li p {
+    color: white;
+    margin-top: 2px;
+}
+#tiaozhuan_ul{
+    display: none;
+    position: absolute;
+    height: 100px;
+    width: auto;
+    z-index: 10;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#tiaozhuan_ul li{
+    clear: both;
+    font-size: 20px;
+}
+.img_main_img{
+    height:130px ;
+    width:130px ;
+    position: relative;
+    border-radius: 65px;
+    left: 10px;
+    top: 10px;
+}
+.div_main_img{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background-image: url("/static/img/welcome2.png");
+    background-size: 150px 150px;
+}
+.div_main_div{
+    display: inline-block;
+    vertical-align: top;
+    height: 150px;
+    position: relative;
+}
+#information_for_pc_main li{
+    cursor: pointer;
+    background-color: #46fffc ;
+    box-shadow: 2px 2px 2px black;
+}
+#information_for_pc_main h1{
+    font-size: 25px;
+    text-align: center;
+    color: #ff3b38;
+}
+#information_for_pc_main h2{
+    font-size: 15px;
+    color: black;
+}
+#information_for_pc_main h3{
+    color: red;
+    position:absolute;
+}
+#information_for_pc_main h4{
+    position: absolute;
+    color: black;
+}

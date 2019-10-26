@@ -1,0 +1,23 @@
+body{
+    margin: 0px;
+}
+#div_head{
+     box-shadow: 3px 3px 20px black;
+}
+
+.cheak_black{
+    border-style: groove;
+    border-color: black;
+    border-width: 1px;
+}
+.cheak_yellow{
+    border-style: groove;
+    border-color: yellow;
+    border-width: 1px;
+}
+.clear_float{
+    clear: both;
+}
+.box_shadow{
+    box-shadow: 3px 3px 20px #000000
+}
